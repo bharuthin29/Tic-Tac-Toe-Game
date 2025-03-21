@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X or O</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            row-gap: 20px;
+            width: 70%;
+            height: auto;
+            margin-left: 15%;
+            /* border: 2px solid green; */
+        }
+
+        .one {
+            width: 80%;
+            height: 200px;
+            border: 10px solid black;
+        }
+
+        .two {
+            display: none;
+            position: absolute;
+            background-image: url("https://m.media-amazon.com/images/I/710GjkD28nL._AC_UF1000,1000_QL80_.jpg");
+            background-size: 100% 100%;
+            top: 7px;
+            width: 67%;
+            height: 698px;
+            margin-left: 14.3%;
+            border: 1px solid black;
+            font-size: 90px;
+            justify-content: center;
+            align-items: center;
+        }
+        .three{
+            display:none;
+            position: absolute;
+            top: 7px;
+            width: 67%;
+            height: 698px;
+            background-color:white ;
+            margin-left: 14.3%;
+            border: 1px solid black;
+            font-size: 150px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="one" onclick="X(0)"></div>
+        <div class="one" onclick="X(1)"></div>
+        <div class="one" onclick="X(2)"></div>
+        <div class="one" onclick="X(3)"></div>
+        <div class="one" onclick="X(4)"></div>
+        <div class="one" onclick="X(5)"></div>
+        <div class="one" onclick="X(6)"></div>
+        <div class="one" onclick="X(7)"></div>
+        <div class="one" onclick="X(8)"></div>
+    </div>
+    <div class="two">Winner</div>
+    <div class="three"> Match  Draw</div>
+    <script>
+        let r = true
+        let moves = 0
+        function X(i) {
+            if (r) {
+                document.getElementsByClassName("one")[i].style.backgroundImage = "url(https://media.istockphoto.com/id/1131230925/vector/check-marks-red-cross-icon-simple-vector.jpg?s=612x612&w=0&k=20&c=8oNof6faYkfOn1O6CAOHwpSmAhq3IK9hY_D3icbaQps=)"
+                document.getElementsByClassName("one")[i].style.backgroundSize = "100% 100%"
+                winner('url("https://media.istockphoto.com/id/1131230925/vector/check-marks-red-cross-icon-simple-vector.jpg?s=612x612&w=0&k=20&c=8oNof6faYkfOn1O6CAOHwpSmAhq3IK9hY_D3icbaQps=")')
+
+                r = false;
+            } else {
+                document.getElementsByClassName("one")[i].style.backgroundImage = "url(https://i.pinimg.com/736x/fc/d7/90/fcd7906e849c123200403029056612fe.jpg)"
+                document.getElementsByClassName("one")[i].style.backgroundSize = "100% 100%"
+                winner('url("https://i.pinimg.com/736x/fc/d7/90/fcd7906e849c123200403029056612fe.jpg")')
+                r = true;
+            }
+            moves++
+            Draw()
+        }
+        function winner(image) {
+            let box = document.getElementsByClassName("one");
+            if (box[0].style.backgroundImage == image && box[1].style.backgroundImage == image && box[2].style.backgroundImage == image || box[3].style.backgroundImage == image && box[4].style.backgroundImage == image && box[5].style.backgroundImage == image || box[6].style.backgroundImage == image && box[7].style.backgroundImage == image && box[8].style.backgroundImage == image || box[0].style.backgroundImage == image && box[3].style.backgroundImage == image && box[6].style.backgroundImage == image || box[1].style.backgroundImage == image && box[4].style.backgroundImage == image && box[7].style.backgroundImage == image || box[2].style.backgroundImage == image && box[5].style.backgroundImage == image && box[8].style.backgroundImage == image || box[2].style.backgroundImage == image && box[4].style.backgroundImage == image && box[6].style.backgroundImage == image || box[0].style.backgroundImage == image && box[4].style.backgroundImage == image && box[8].style.backgroundImage == image) {
+                document.getElementsByClassName("two")[0].style.display = "grid"
+                document.getElementsByClassName("two")[0].style.backgroundImage = image
+                return true;
+            }
+            return false;
+        }
+
+        function Draw(){
+            if (moves === 9 && document.getElementsByClassName("two")[0].style.display !== "grid") {
+            document.getElementsByClassName("three")[0].style.display = "grid";
+        }
+        }
+
+    </script>
+</body>
+
+</html>
